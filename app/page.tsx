@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 
 type ModeId = "read" | "steps" | "focus" | "keywords";
 type Stage = "configure" | "review" | "shared";
@@ -128,10 +127,10 @@ export default function Home() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <Link className="brand" href="/" aria-label="明路首页">
+        <button className="brand" type="button" aria-label="明路首页" onClick={() => { window.location.href = "/"; }}>
           <span className="brand-mark" aria-hidden="true">明</span>
           <span><strong>明路</strong><small>SEN 学习导航器</small></span>
-        </Link>
+        </button>
         <div className="top-actions">
           <span className="prototype-pill">交互原型</span>
           <div className="teacher-chip"><span className="status-dot" />教师预览模式</div>
