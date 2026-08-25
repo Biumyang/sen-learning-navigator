@@ -127,7 +127,7 @@ export default function Home() {
   return (
     <main className="app-shell">
       <header className="topbar">
-        <button className="brand" type="button" aria-label="明路首页" onClick={() => { window.location.href = "/"; }}>
+        <button className="brand" type="button" aria-label="明路首页" onClick={() => window.location.reload()}>
           <span className="brand-mark" aria-hidden="true">明</span>
           <span><strong>明路</strong><small>SEN 学习导航器</small></span>
         </button>
