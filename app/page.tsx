@@ -69,8 +69,11 @@ export default function Home() {
   }
 
   function toggleMode(id: ModeId) {
+    const nextEnabled = !modes[id];
     setModes((current) => ({ ...current, [id]: !current[id] }));
     setStage("configure");
+    const label = supportModes.find((mode) => mode.id === id)?.label ?? "学习支持";
+    notify(`${label}${nextEnabled ? "已开启" : "已关闭"}`);
   }
 
   function generateVersion() {
@@ -182,9 +185,9 @@ export default function Home() {
           <p className="privacy-copy">本原型不会上传或保存学生资料</p>
         </aside>
 
-        <article className={`panel preview-panel ${stage === "shared" ? "shared" : ""}`}>
+        <article className={`panel preview-panel ${stage === "shared" ? "shared" : ""} ${modes.focus && stage !== "shared" ? "focus-mode" : ""}`}>
           <div className="panel-heading">
-            <div><span className="panel-kicker mint">学生预览</span><h2>{stage === "shared" ? "版本已准备好" : modes.steps ? `专注模式 · 第 ${stepIndex + 1} 步` : "完整题目模式"}</h2></div>
+            <div><span className="panel-kicker mint">学生预览</span><h2>{stage === "shared" ? "版本已准备好" : modes.steps && modes.focus ? `专注模式 · 第 ${stepIndex + 1} 步` : modes.steps ? `分步显示 · 第 ${stepIndex + 1} 步` : modes.focus ? "专注阅读模式" : "完整题目模式"}</h2></div>
             <span className="preview-badge">{stage === "review" ? "待教师确认" : stage === "shared" ? "已完成" : "即时预览"}</span>
           </div>
 
@@ -201,6 +204,12 @@ export default function Home() {
           ) : (
             <>
               <div className={`paper accessible-paper ${modes.focus ? "focus-on" : ""}`}>
+                {modes.focus && (
+                  <div className="focus-status" aria-live="polite">
+                    <span aria-hidden="true">眼</span>
+                    <p><strong>专注模式已开启</strong><small>画面会突出当前要处理的内容</small></p>
+                  </div>
+                )}
                 {modes.steps ? (
                   <>
                     <div className="progress-label"><span>第 1 题</span><strong>{stepIndex + 1} / {lesson.steps.length} 步</strong></div>
@@ -226,6 +235,7 @@ export default function Home() {
               <div className="preview-footer">
                 <span><i className="legend-dot teal" />{modes.steps ? "一次只显示一个步骤" : "显示完整题目"}</span>
                 <span><i className="legend-dot amber" />{modes.keywords ? "重点已经标示" : "可开启关键词提示"}</span>
+                <span><i className={`legend-dot ${modes.focus ? "focus-active" : "focus-inactive"}`} />{modes.focus ? "专注模式已开启" : "专注模式未开启"}</span>
               </div>
               {stage === "review" && <button className="confirm-button" type="button" onClick={() => { setStage("shared"); notify("教师已确认，学生版本可以发送"); }}>教师确认：可以发给学生</button>}
             </>
