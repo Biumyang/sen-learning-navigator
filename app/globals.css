@@ -157,15 +157,36 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(239, 143, 75, .4
 .focus-instruction { margin: 28px 0 20px; font-size: 19px; line-height: 1.55; letter-spacing: -.02em; }
 .focus-instruction strong { padding: 1px 5px; border-bottom: 3px solid #efb17d; background: #fff2e5; }
 .focus-on .focus-instruction { margin-top: 24px; font-size: 22px; line-height: 1.68; }
-.number-card { padding: 19px; border: 1px solid #c7ded7; border-radius: 13px; background: var(--mint); text-align: center; }
-.number-card small { display: block; margin-bottom: 5px; color: #617772; font-size: 11px; }
-.number-card strong { font-size: 30px; letter-spacing: -.03em; }
-.number-card em { font-size: 13px; font-style: normal; }
-.focus-on .number-card { padding: 23px; border-color: #94c9bb; background: #dff5ed; box-shadow: 0 7px 18px rgba(22, 124, 114, .08); }
-.focus-on .number-card strong { font-size: 36px; }
+.guided-choice { padding: 17px; border: 1px solid #c7ded7; border-radius: 13px; background: #f3faf7; }
+.choice-label { margin: 0 0 9px; color: var(--teal-dark); font-size: 10px; font-weight: 800; letter-spacing: .04em; }
+.choice-question { margin: 0; color: #40514d; font-size: 12px; line-height: 1.7; }
+.choice-question mark { padding: 1px 3px; border-radius: 4px; background: #ffe1bd; color: inherit; }
+.number-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 14px; }
+.number-options button {
+  min-height: 48px; border: 1px solid #b9d2cb; border-radius: 11px; background: white;
+  color: var(--teal-dark); font-size: 19px; font-weight: 800; cursor: pointer;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.number-options button:hover { border-color: var(--teal); transform: translateY(-1px); }
+.number-options button.correct { border-color: #2d8a66; background: #dff4e9; color: #135c43; }
+.number-options button.incorrect { border-color: #d88c72; background: #fff0e9; color: #9a4429; }
+.choice-feedback { display: flex; align-items: center; gap: 9px; margin-top: 11px; padding: 10px; border-radius: 10px; }
+.choice-feedback > span { flex: 0 0 25px; width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; color: white; font-size: 11px; font-weight: 800; }
+.choice-feedback p { margin: 0; }
+.choice-feedback strong, .choice-feedback small { display: block; }
+.choice-feedback strong { font-size: 10px; }
+.choice-feedback small { margin-top: 2px; font-size: 9px; line-height: 1.45; }
+.choice-feedback.correct { background: #def3e8; color: #155d44; }
+.choice-feedback.correct > span { background: #2d8a66; }
+.choice-feedback.try-again { background: #fff0e8; color: #82452f; }
+.choice-feedback.try-again > span { background: #c76f4f; }
+.focus-on .guided-choice { border-color: #94c9bb; background: #effaf5; box-shadow: 0 7px 18px rgba(22, 124, 114, .08); }
+.focus-on .choice-question { font-size: 13px; }
+.focus-on .number-options button { min-height: 54px; font-size: 22px; }
 .next-button { margin-top: 18px; background: var(--teal); color: white; box-shadow: none; }
 .step-actions { display: grid; grid-template-columns: 85px 1fr; gap: 8px; margin-top: 18px; }
 .step-actions .next-button { margin-top: 0; }
+.step-actions .next-button:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
 .back-button, .secondary-button { border: 1px solid #c9d9d4; border-radius: 11px; background: white; color: var(--teal-dark); font-size: 11px; font-weight: 800; cursor: pointer; }
 .back-button:disabled { opacity: .38; cursor: not-allowed; }
 .secondary-button { width: 100%; margin-top: 9px; padding: 11px; }
