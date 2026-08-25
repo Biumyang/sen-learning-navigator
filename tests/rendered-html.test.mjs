@@ -19,18 +19,21 @@ test("server-renders the SEN learning navigator", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>明路 · SEN 学习导航器<\/title>/);
-  assert.match(html, /让题目更好懂/);
-  assert.match(html, /生成学生版本/);
-  assert.match(html, /教师预览模式/);
-  assert.match(html, /专注模式已开启/);
+  assert.match(html, /<title>明路 · SEN 學習導航器<\/title>/);
+  assert.match(html, /讓題目更好懂/);
+  assert.match(html, /生成學生版本/);
+  assert.match(html, /教師預覽模式/);
+  assert.match(html, /專注模式已開啟/);
+  assert.match(html, /先閱讀題目，再選出正確數字/);
+  assert.match(html, /先選一個數字/);
+  assert.doesNotMatch(html, /<div class="number-card">/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
 
 test("emits product-specific social metadata", async () => {
   const response = await render();
   const html = await response.text();
-  assert.match(html, /property="og:title" content="明路 · SEN 学习导航器"/);
+  assert.match(html, /property="og:title" content="明路 · SEN 學習導航器"/);
   assert.match(html, /property="og:image" content="http:\/\/localhost:3000\/og.png"/);
   assert.match(html, /name="twitter:card" content="summary_large_image"/);
 });
