@@ -23,6 +23,7 @@ test("server-renders the SEN learning navigator", async () => {
   assert.match(html, /让题目更好懂/);
   assert.match(html, /生成学生版本/);
   assert.match(html, /教师预览模式/);
+  assert.match(html, /专注模式已开启/);
   assert.doesNotMatch(html, /codex-preview|SkeletonPreview|react-loading-skeleton/);
 });
 
