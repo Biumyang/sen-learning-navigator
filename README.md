@@ -2,6 +2,8 @@
 
 一个面向教师的交互原型：把同一份练习转换成更容易理解的呈现方式，而不是降低题目难度或直接提供答案。
 
+[公开体验](https://biumyang.github.io/sen-learning-navigator/)
+
 ![明路产品预览](public/og.png)
 
 ## 为什么做这个原型
